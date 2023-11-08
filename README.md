@@ -107,34 +107,6 @@ LIMIT 10;
 </table>
 
 
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '  country_name country_code                                     indicator_name  indicator_code                 debt\n0  Afghanistan          AFG  Disbursements on external debt, long-term (DIS...  DT.DIS.DLXF.CD   72894453.700000003\n1  Afghanistan          AFG  Interest payments on external debt, long-term ...  DT.INT.DLXF.CD   53239440.100000001\n2  Afghanistan          AFG                  PPG, bilateral (AMT, current US$)  DT.AMT.BLAT.CD   61739336.899999999\n3  Afghanistan          AFG                  PPG, bilateral (DIS, current US$)  DT.DIS.BLAT.CD   49114729.399999999\n4  Afghanistan          AFG                  PPG, bilateral (INT, current US$)  DT.INT.BLAT.CD   39903620.100000001\n5  Afghanistan          AFG               PPG, multilateral (AMT, current US$)  DT.AMT.MLAT.CD             39107845\n6  Afghanistan          AFG               PPG, multilateral (DIS, current US$)  DT.DIS.MLAT.CD   23779724.300000001\n7  Afghanistan          AFG               PPG, multilateral (INT, current US$)  DT.INT.MLAT.CD             13335820\n8  Afghanistan          AFG         PPG, official creditors (AMT, current US$)  DT.AMT.OFFT.CD  100847181.900000006\n9  Afghanistan          AFG         PPG, official creditors (DIS, current US$)  DT.DIS.OFFT.CD   72894453.700000003'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
-
-
 ## 2. Finding the number of distinct countries
 <p>From the first ten rows, we can see the amount of debt owed by <em>Afghanistan</em> in the different debt indicators. But we do not know the number of different countries we have on the table. There are repetitions in the country names because a country is most likely to have debt in more than one debt indicator. </p>
 <p>Without a count of unique countries, we will not be able to perform our statistical analyses holistically. In this section, we are going to extract the number of unique countries present in the table. </p>
@@ -161,34 +133,6 @@ FROM international_debt
         <td>124</td>
     </tr>
 </table>
-
-
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '   total_distinct_countries\n0                       124'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
 
 
 ## 3. Finding out the distinct debt indicators
@@ -291,34 +235,6 @@ ORDER BY distinct_debt_indicators
 </table>
 
 
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '   distinct_debt_indicators\n0            DT.AMT.BLAT.CD\n1            DT.AMT.DLXF.CD\n2            DT.AMT.DPNG.CD\n3            DT.AMT.MLAT.CD\n4            DT.AMT.OFFT.CD\n5            DT.AMT.PBND.CD\n6            DT.AMT.PCBK.CD\n7            DT.AMT.PROP.CD\n8            DT.AMT.PRVT.CD\n9            DT.DIS.BLAT.CD\n10           DT.DIS.DLXF.CD\n11           DT.DIS.MLAT.CD\n12           DT.DIS.OFFT.CD\n13           DT.DIS.PCBK.CD\n14           DT.DIS.PROP.CD\n15           DT.DIS.PRVT.CD\n16           DT.INT.BLAT.CD\n17           DT.INT.DLXF.CD\n18           DT.INT.DPNG.CD\n19           DT.INT.MLAT.CD\n20           DT.INT.OFFT.CD\n21           DT.INT.PBND.CD\n22           DT.INT.PCBK.CD\n23           DT.INT.PROP.CD\n24           DT.INT.PRVT.CD'
-    try:    
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
-
-
 ## 4. Totaling the amount of debt owed by the countries
 <p>As mentioned earlier, the financial debt of a particular country represents its economic state. But if we were to project this on an overall global scale, how will we approach it?</p>
 <p>Let's switch gears from the debt indicators now and find out the total amount of debt (in USD) that is owed by the different countries. This will give us a sense of how the overall economy of the entire world is holding up.</p>
@@ -345,34 +261,6 @@ FROM international_debt;
         <td>3079734.49</td>
     </tr>
 </table>
-
-
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '   total_debt\n0  3079734.49'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
 
 
 ## 5. Country with the highest debt
@@ -408,35 +296,6 @@ LIMIT 1;
         <td>285793494734.200001568</td>
     </tr>
 </table>
-
-
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '  country_name              total_debt\n0        China  285793494734.200001568'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
-
 
 ## 6. Average amount of debt across indicators
 <p>So, it was <em>China</em>. A more in-depth breakdown of China's debts can be found <a href="https://datatopics.worldbank.org/debt/ids/country/CHN">here</a>. </p>
@@ -520,35 +379,6 @@ LIMIT 10;
     </tr>
 </table>
 
-
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '   debt_indicator                                     indicator_name          average_debt\n0  DT.AMT.DLXF.CD  Principal repayments on external debt, long-te...  5904868401.499193612\n1  DT.AMT.DPNG.CD  Principal repayments on external debt, private...  5161194333.812658349\n2  DT.DIS.DLXF.CD  Disbursements on external debt, long-term (DIS...  2152041216.890243888\n3  DT.DIS.OFFT.CD         PPG, official creditors (DIS, current US$)  1958983452.859836046\n4  DT.AMT.PRVT.CD          PPG, private creditors (AMT, current US$)  1803694101.963265321\n5  DT.INT.DLXF.CD  Interest payments on external debt, long-term ...  1644024067.650806481\n6  DT.DIS.BLAT.CD                  PPG, bilateral (DIS, current US$)  1223139290.398230108\n7  DT.INT.DPNG.CD  Interest payments on external debt, private no...  1220410844.421518983\n8  DT.AMT.OFFT.CD         PPG, official creditors (AMT, current US$)  1191187963.083064523\n9  DT.AMT.PBND.CD                      PPG, bonds (AMT, current US$)  1082623947.653623188'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
-
-
 ## 7. The highest amount of principal repayments
 <p>We can see that the indicator <code>DT.AMT.DLXF.CD</code> tops the chart of average debt. This category includes repayment of long term debts. Countries take on long-term debt to acquire immediate capital. More information about this category can be found <a href="https://datacatalog.worldbank.org/principal-repayments-external-debt-long-term-amt-current-us-0">here</a>. </p>
 <p>An interesting observation in the above finding is that there is a huge difference in the amounts of the indicators after the second one. This indicates that the first two indicators might be the most severe categories in which the countries owe their debts.</p>
@@ -589,35 +419,6 @@ WHERE RK = 1;
         <td>Principal repayments on external debt, long-term (AMT, current US$)</td>
     </tr>
 </table>
-
-
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '  country_name                                     indicator_name\n0        China  Principal repayments on external debt, long-te...'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
-
 
 ## 8. The most common debt indicator
 <p>China has the highest amount of debt in the long-term debt (<code>DT.AMT.DLXF.CD</code>) category. This is verified by <a href="https://data.worldbank.org/indicator/DT.AMT.DLXF.CD?end=2018&most_recent_value_desc=true">The World Bank</a>. It is often a good idea to verify our analyses like this since it validates that our investigations are correct. </p>
@@ -730,33 +531,6 @@ LIMIT 20;
 
 
 
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '    indicator_code  indicator_count\n0   DT.INT.OFFT.CD              124\n1   DT.INT.MLAT.CD              124\n2   DT.INT.DLXF.CD              124\n3   DT.AMT.OFFT.CD              124\n4   DT.AMT.MLAT.CD              124\n5   DT.AMT.DLXF.CD              124\n6   DT.DIS.DLXF.CD              123\n7   DT.INT.BLAT.CD              122\n8   DT.DIS.OFFT.CD              122\n9   DT.AMT.BLAT.CD              122\n10  DT.DIS.MLAT.CD              120\n11  DT.DIS.BLAT.CD              113\n12  DT.INT.PRVT.CD               98\n13  DT.AMT.PRVT.CD               98\n14  DT.INT.PCBK.CD               84\n15  DT.AMT.PCBK.CD               84\n16  DT.INT.DPNG.CD               79\n17  DT.AMT.DPNG.CD               79\n18  DT.INT.PBND.CD               69\n19  DT.AMT.PBND.CD               69'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
-
-
-
-
 ## 9. Other viable debt issues and conclusion
 <p>There are a total of six debt indicators in which all the countries listed in our dataset have taken debt. The indicator <code>DT.AMT.DLXF.CD</code> is also there in the list. So, this gives us a clue that all these countries are suffering from a common economic issue. But that is not the end of the story, but just a part of the story.</p>
 <p>Let's change tracks from <code>debt_indicator</code>s now and focus on the amount of debt again. Let's find out the maximum amount of debt that each country has. With this, we will be in a position to identify the other plausible economic issues a country might be going through.</p>
@@ -827,31 +601,6 @@ LIMIT 10;
     </tr>
 </table>
 
-
-
-
-```python
-%%nose
-# %%nose needs to be included at the beginning of every @tests cell
-
-last_output = _
-
-def test_output():
-    correct_result_string = '                                   country_name           maximum_debt\n0                                         China  96218620835.699996948\n1                                        Brazil  90041840304.100006104\n2                            Russian Federation          66589761833.5\n3                                        Turkey  51555031005.800003052\n4                                    South Asia  48756295898.199996948\n5  Least developed countries: UN classification  40160766261.599998474\n6                                      IDA only  34531188113.199996948\n7                                         India  31923507000.799999237\n8                                     Indonesia  30916112653.799999237\n9                                    Kazakhstan  27482093686.400001526'
-    try:
-        assert last_output.DataFrame().to_string() == correct_result_string
-    except AttributeError:
-        assert False, "Please ensure a SQL ResultSet is the output of the code cell."
-    except AssertionError:
-        assert False, "The results of the query are incorrect. Please review the instructions and check the hint if necessary."
-```
-
-
-
-
-
-
-    1/1 tests passed
 
 
 
